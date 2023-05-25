@@ -1,0 +1,45 @@
+INSTALLATION / RUNNING
+
+1. Follow the instructions to install rust on the website (https://www.rust-lang.org/tools/install)
+
+2. `cd` into the directory.
+
+3. Simply run `cargo run` in your terminal of choice.
+
+WRITEUP
+
+This program's purpose is to provide movie reccomendations to users of a popular
+streaming site, Netflix. The method to do so is the k-Nearest-Neighbor algorithm.
+
+In this program, the AXES are movies, and the POINTS are users. This means that
+the program will search for similiar USERS and then predict the score based on that.
+
+Distance in this program is calculated via getting the squared distance between
+all of the shared ratings, then dividing by the total count. The square root
+is unneccessary, as we are sorting a list, and applying the same operation to
+every element won't affect the order.
+
+I decided to use a k-value of 27, as it performed pretty well in the validation
+set, this was kind of an arbitrary decision.
+
+To compute a prediction, I found k closest points then simply computed the average.
+I did attempt to create a weighted function, however it did not work.
+
+I was able to achieve an RMSE of around 0.913 on the validation set. I might
+have been able to improve it if I tinkered around some more.
+
+It takes around two minutes to run the validator. However, the test set takes much 
+longer due to its increased size. 
+    Validation Time: 102346 ms (1 min 42 sec)
+    Test Time: 687611 ms (11 min 26 sec)
+
+Furthermore, I also implemented multithreading which improves times drastically.
+    Validation Time: 24703 ms (24 sec)
+    Test Time: 146573 ms (2 min 26 sec)
+
+Overall I enjoyed working on this project. Writing it in rust was quite an experience,
+but I made it out okay in the end. This project suffered an entire rewrite just to 
+find one error, but that's just how programming is, and I think the code is much cleaner
+now. I did manage to get multithreading in there which I'm very happy about.
+I really wish I found the error faster so I could try to get a crazy low rmse
+but hey, it is what it is.

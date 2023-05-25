@@ -1,0 +1,33 @@
+ASSEMBLY LANGUAGE
+
+A (LSB) = WN A
+B       = WN B
+C       = WN C
+D       = MUX
+
+  3 2 1 0 7564
+# D C B A INPT INSTRUCTION
+0 0 0 0 0 !!!! NOP / JMP   No-op if goto is not setup
+1 0 0 0 1 !!!! STA         Store input in A
+2 0 0 1 0 !!!! STB         Store input in B
+3 0 0 1 1 !!!! STX         Store input in Both
+  0 1 0 0 ???? ---	   Output is ignored
+  0 1 0 1 ???? ---         Output is ignored
+  0 1 1 0 ???? ---         Output is ignored
+  0 1 1 1 ???? ---	   Output is ignored
+  1 0 0 0 ???? ---	   Toggles mux, nothing really happens
+9 1 0 0 1 ???? CTA	   Move value in C to A
+A 1 0 1 0 ???? CTB	   Move value in C to B
+B 1 0 1 1 ???? CTX	   Move value in C to Both
+C 1 1 0 0 ???? ADD         Add values, store in C
+D 1 1 0 1 ???? ---	   Infinite loop
+E 1 1 1 0 ???? ---	   Infinite loop
+F 1 1 1 1 ???? ---	   Infinite loop
+
+STA 0   0x01
+STB 1   0x12
+ADD     0x0C
+CTA	  0x09
+ADD	  0x0C
+CTB	  0x0A
+...

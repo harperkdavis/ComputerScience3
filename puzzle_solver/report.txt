@@ -1,0 +1,47 @@
+For the fifteen puzzle, I unfortunately didn't end up solving any puzzles past a 
+depth of 43, which was around the point when it really started slowing down. I'm
+not entirely sure what caused the program to be so slow. You would think, that
+due to rust's reputation for being quote on quote "blazingly fast," that I would
+theoretically be able to beat some other times, but it turns out it cannot. I
+think that it has something to do with the way I manage the memory, but I am not
+a rust genius (yet), and this still means that I am learning the ways it works.
+One side tangent, I'm proud of my implementation of the search tree because
+initially I held every single search node that came before a search node in a
+list, but I figured out how to do it without doing this (Using Rc<>), and I was
+proud of coming up with this. Anyways, ID-DFS was of course faster, and this is
+what I used to get a depth of 43, which took an average time of 7886 ms. However
+I did try running A* up to the maximum depth of the class spreadsheet and this
+took the very slow time of 21586 ms, which was unfortunate. This was only using 
+the manhattan distance, and I didn't end up implementing any other heuristics.
+One experiment that I did perform was trying to optimize the code of the fifteen
+puzzle itself, which is what resulted in fifteen_puzzle_fast.rs, which didn't
+actually end up being too much faster than fifteen_puzzle.rs, but was still an
+interesting experiment nonetheless. 
+
+For my own puzzle, I tried to implement a rubiks cube. This was definitely a
+challenge, both in implementation and solving, but I think I implemented it in
+a cool way. Each side of the rubiks cube has 8 real colors, because the middle 
+face doesn't move when the rubiks cube is permutated. There are only 6 possible 
+colors, so we can represent this in 3 bits (but we will use 4 because its a 
+nicer number), and can therefore store the data of a face in a single 32 bit 
+number, with every 4 bits referring to a specific color. Now the colors are 
+arranged in clockwise order, starting at a corner. This was arranged so that 
+simply rotating the number by 8 bits would actually rotate the colors of the 
+face, which I thought was pretty cool. Now the way that it rotates the parts of 
+the faces is a little more strange. I set "0-indexes" for all of the faces by 
+looking at an actual rubiks cube and picking a corner to be 0. Then I manually 
+created a table of indexes so that, when each face was turned, would copy the 
+colors over according to the indexes in the table. I know that sounds a bit 
+convoluted, and it is, but it works! I measured the difficulty of the puzzle in
+the amount of moves that I generated the scramble from, but this also meant that
+the puzzle would sometimes have less moves than the scramble moves, which is a
+little innacurate. Unfortunately, I wasn't really able to solve a rubiks cube 
+very quickly. It would start to reach very long times after about six moves per
+scramble, and I think this was because of how there are so many possible moves
+per state, so going more and more in depth is going to get verrrry slow. One
+heuristic that I tried to implement was one that I found online: simply taking
+the number of colors in the correct places and dividing that by 12. However,
+this heuristic really did not seem to improve my times that much at all. I did
+find some other interesting algorithms like creating pattern databases, but
+didn't end up implementing any of those. Overall, I thought this was a very
+interesting puzzle to take on.

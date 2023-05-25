@@ -1,0 +1,39 @@
+OVERVIEW
+
+For this project, I built a versatile nerual network structure and added a few
+other features that make it quite interesting. 
+
+The neural network is a struct with an array of layers, another struct each 
+containing data about its size, the output size, as well as an array of floats 
+for the weights. 
+
+I also implemented a generalized CSV dataset interpreter, which I used for all of
+my datasets in this project.
+
+I was able to achieve an accuracy upwards of 98% on the first handwritten digits 
+set, as well as an accuracy of 92% on the MNIST handwritten set.
+
+As well as meeting the requirements for this project, I also implemented three
+extra features that made this project more interesting
+
+    1. I added a way to display the weights of a neural network in the console,
+    using colored text to indicate strength. This was especially helpful during
+    debugging.
+
+    2. I added a way to save and load the neural networks into files, which I used
+    for the third extra feature. I used CSV files for this as well.
+
+    3. I created an html visualizer where you can draw digits and the network
+    will predict the digit that is drawn. Instructions for how to operate this
+    are below.
+
+INSTRUCTIONS
+
+To run any specific test, uncomment the line, and as you hopefully have installed
+rust, run `cargo run` in your terminal of choice.
+
+In order to run the visualizer, I would recommend you install the VSCode "Live
+Server" extention, then right click `visualizer/index.html` and click "Open
+with Live Server" and this will open it in your browser. Instructions are contained
+within the website itself. The networks are contained within the `models` folder,
+and the datasets are within the `data` folder.
